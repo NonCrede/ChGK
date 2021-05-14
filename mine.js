@@ -35,7 +35,7 @@ let ptr = document.querySelector(".wheel_hand");
 let o = 0;
 ptr.addEventListener("click", function(){
     ptr.style.transition = "transform "+2500 +"ms";
-    ptr.style.transform = "rotate("+ array2[o]+ "deg)";
+    ptr.style.transform = "rotate("+ (array2[o]+ 8) + "deg)";
     o = o + 1;
 });
 //ptr.style.transform = "rotate("+45 + "deg)";
