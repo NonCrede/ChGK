@@ -1,9 +1,11 @@
 let array = [];
 let array2 = [];
 let arrayinp = [];
+let color =[];
 let a = prompt();
 let b = 1;
 for(let i = 0; i < a; i++){
+    color.push("#fde23e");
     array.push(b);
     arrayinp.push(b);
     b = b + 1;
@@ -57,7 +59,7 @@ let Piechart = function(options){
                 start_angle + slice_angle,
                 this.colors[color_index % this.colors.length]
             );
-            let pieRadius = Math.min(this.canvas.width/2,this.canvas.height/2);
+            let pieRadius = Math.min(this.canvas.width/1.2,this.canvas.height/1.2);
             let labelX = this.canvas.width/2 + (pieRadius / 2) * Math.cos(start_angle + slice_angle/2);
             let labelY = this.canvas.height/2 + (pieRadius / 2) * Math.sin(start_angle + slice_angle/2);
             let labelText = val;
@@ -74,7 +76,7 @@ let myPiechart = new Piechart(
     {
         canvas:myCanvas,
         data:arrayinp,
-        colors:["#fde23e","#f16e23", "#57d9ff","#937e88"]
+        colors:color
     }
 );
 myPiechart.draw();
@@ -103,8 +105,14 @@ let o = 0;
 ptr.addEventListener("click", function(){
     ptr.style.transition = "transform "+2500 +"ms";
     ptr.style.transform = "rotate("+ (array2[o]) + "deg)";
-    o = o + 1;
+    function update(){
+        color[array[o] - 1] = "#937e88";
+        myPiechart.draw();
+        o = o + 1;
+    }
+    setTimeout(update, 2500);
+    console.log(color);
 })
 //window.onload = drawPie;
-//ptr.style.transform = "rotate("+45 + "deg)";
+//ptr.style.transform = "rotate("+45 + "deg)"; #937e88
 //ptr.style.transition = "transform "+1000 +"ms";
